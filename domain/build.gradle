@@ -1,0 +1,29 @@
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+dependencies {
+    // Kotlin
+    implementation Deps.kotlinStdlib7
+    implementation Deps.kotlinxCoroutinesCore
+    implementation Deps.kotlinxCoroutinesAndroid
+
+    //Network
+    implementation Deps.jacksonConverter
+    //Unit test
+    testImplementation Deps.junit
+}
+
+buildscript {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+    }
+    dependencies {
+        classpath Deps.kotlinGradlePlugin
+        classpath Deps.androidGradlePlugin
+    }
+}
+
+repositories {
+    mavenCentral()
+}

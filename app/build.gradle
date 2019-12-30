@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.flicker.flickersearch"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        vectorDrawables.useSupportLibrary = true
+
+        // base url to the backend API
+        buildConfigField 'String', 'EndPoint', '"https://www.flickr.com/services"'
+        buildConfigField 'String', 'ApiKey', '"d0d311847224fd6ba2baadc18fad624d"'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':domain')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Kotlin
+    implementation Deps.kotlinStdlib7
+    implementation Deps.kotlinxCoroutinesCore
+    implementation Deps.kotlinxCoroutinesAndroid
+    implementation Deps.ktx
+    implementation Deps.kotlinReflect
+
+
+    // MultiDex
+    implementation Deps.multidexAndroidx
+
+    // UI
+    implementation Deps.androidxAppcompat
+    implementation Deps.androidMaterial
+    implementation Deps.androidxRecyclerview
+    implementation Deps.androidxCardview
+    implementation Deps.androidxConstraint
+    implementation Deps.androidxLifecycleExtensions
+    implementation Deps.pointIndicator
+    implementation Deps.picasso
+    implementation Deps.androidxLifecycleViewModelKtx
+
+
+    //Koin
+    implementation Deps.koin
+    implementation Deps.koinViewModel
+
+
+    // Network
+    implementation Deps.retrofit
+    implementation Deps.jacksonConverter
+    implementation Deps.okhttpLogging
+    implementation Deps.okhttp
+
+
+    implementation "com.github.bumptech.glide:glide:3.7.0"
+    implementation "com.github.bumptech.glide:okhttp3-integration:1.5.0"
+
+}

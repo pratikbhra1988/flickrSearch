@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/margin_8dp">
+
+    <com.flicker.flickersearch.utils.custom.RoundedCornerImage
+        android:id="@+id/item_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Image to be displayed"
+        android:src="@drawable/sample"
+        app:corner="8dp"
+        />
+
+    <TextView
+        android:id="@+id/item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_rounded_rect_transparent_black"
+        android:singleLine="true"
+        android:padding="@dimen/padding_4dp"
+        android:text="file name"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        />
+</RelativeLayout>
