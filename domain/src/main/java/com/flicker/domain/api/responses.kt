@@ -52,6 +52,44 @@ data class photo(
 ) {
 }
 
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class SearchDetailResponse(
+    @JsonProperty("errorCode") errorCode: String?,
+    @JsonProperty("errorData") errorData: String?,
+    @JsonProperty("success") val success: Boolean? = false,
+    @JsonProperty("photo") val photo: PhotoDetail? = null
+
+) : ApiResponse(errorCode, errorData) {
+}
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class PhotoDetail(
+    @JsonProperty("id") val id: String? = null,
+    @JsonProperty("secret") val secret: String? = null,
+    @JsonProperty("server") val server: String? = null,
+    @JsonProperty("farm") val farm: String? = null,
+    @JsonProperty("dateuploaded") val dateuploaded: String? = null,
+
+    @JsonProperty("urls") val urls: Urls? = null
+) {
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+data class Urls(
+    @JsonProperty("url") val listurl: List<Url>?= null
+) {
+}
+
+@JsonIgnoreProperties(ignoreUnknown = true)
+class Url(
+    @JsonProperty("type") val type: String? = null,
+    @JsonProperty("_content") val imageurl: String? = null
+) {
+}
+
 //EndRegion
 
 

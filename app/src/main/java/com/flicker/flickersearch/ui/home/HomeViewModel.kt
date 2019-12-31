@@ -17,9 +17,9 @@ import kotlinx.coroutines.launch
  */
 class HomeViewModel(val repository: HomeRepository) : ViewModel() {
 
-    private val mSearchResponse: MutableLiveData<Data<com.flicker.domain.api.SearchResponse>> = MutableLiveData()
+    private val mSearchResponse: MutableLiveData<Data<SearchResponse>> = MutableLiveData()
 
-    val mSearchLiveData: LiveData<Data<com.flicker.domain.api.SearchResponse>> = mSearchResponse
+    val mSearchLiveData: LiveData<Data<SearchResponse>> = mSearchResponse
 
 
     fun getQueryResult(query: String) {

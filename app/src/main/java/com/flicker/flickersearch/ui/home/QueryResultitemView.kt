@@ -32,7 +32,7 @@ class QueryResultitemView(context: Context, attrs: AttributeSet? = null) :
             if(!mData.url_n.isNullOrEmpty()) {
                 item_image.loadImageFromLink(mData.url_n)
             } else {
-                val thumbnailLink = getFlickrImageLink(mData.id, mData.secret, mData.server, mData.farm!!.toInt(), SMALL_360)
+                val thumbnailLink = getFlickrImageLink(mData.id, mData.secret, mData.server, mData.farm!!.toInt(), MEDIUM_800)
                 item_image.loadImageFromLink(thumbnailLink)
             }
 

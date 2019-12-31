@@ -1,5 +1,6 @@
 package com.flicker.flickersearch.api
 
+import com.flicker.domain.api.SearchDetailResponse
 import com.flicker.flickersearch.BuildConfig
 import com.flicker.domain.api.SearchResponse
 import com.flicker.flickersearch.utils.MEDIUM_640
@@ -24,7 +25,18 @@ class BackendAPI {
             @Query("format") format: String,
             @Query("extras") extras: String?= "url_$MEDIUM_640",
             @Query("nojsoncallback") nojsoncallback: String?="1"
-        ): com.flicker.domain.api.SearchResponse
+        ): SearchResponse
+
+
+        @GET("rest/")
+        suspend fun fetchDetailResult(
+            @Query("method") method: String,
+            @Query("api_key") api_key: String,
+            @Query("photo_id") photo_id: String,
+            @Query("format") format: String,
+            @Query("extras") extras: String?= "url_$MEDIUM_640",
+            @Query("nojsoncallback") nojsoncallback: String?="1"
+        ): SearchDetailResponse
 
 
     }

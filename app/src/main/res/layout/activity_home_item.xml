@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="Image to be displayed"
-        android:src="@drawable/sample"
         app:corner="8dp"
         />
 

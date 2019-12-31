@@ -1,6 +1,11 @@
 package com.flicker.flickersearch.utils
 
+import android.app.Activity
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -41,23 +46,46 @@ fun ImageView.loadImageFromLink(link: String?) {
         } catch (ex:Exception) {
 
         }
-
-        /*Glide.with(context.applicationContext)  //2
-            .load(link) //3
-            .centerCrop() //4
-            .placeholder(R.drawable.bottom_rounded_rect_transparent_black) //5
-            .error(R.drawable.bottom_rounded_rect_transparent_black) //6
-            .fallback(R.drawable.bottom_rounded_rect_transparent_black) //7
-            .into(this) //8*/
     }
 }
 
+fun Activity.hideKeyboard() = currentFocus?.let {
+    (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+        .hideSoftInputFromWindow(it.windowToken, 0)
+}
+fun isNetworkAvailable(context: Context): Boolean {
+    val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    var activeNetworkInfo: NetworkInfo? = null
+    activeNetworkInfo = cm.activeNetworkInfo
+    return activeNetworkInfo != null && activeNetworkInfo.isConnectedOrConnecting
+}
+
+
+
+fun Context.isConnectingToInternet(): Boolean {
+    val connectivity = getSystemService(
+        Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    if (connectivity != null) {
+        val info = connectivity.allNetworkInfo
+        if (info != null)
+            for (i in info)
+                if (i.state == NetworkInfo.State.CONNECTED) {
+                    return true
+                }
+    }
+    return false
+}
+
+
 const val DEFAULT_PAGE_SIZE = 30
 const val DEFAULT_QUERY = "nature"
-const val API_KEY = "aa26679bb06bff46497df7f1e970b178"
+const val API_KEY = "d0d311847224fd6ba2baadc18fad624d"
+
+const val FORMAT_JSON = "json"
 
 const val METHOD_SEARCH_RECENT = "flickr.photos.getRecent"
 const val METHOD_SEARCH = "flickr.photos.search"
+const val METHOD_INFO = "flickr.photos.getInfo"
 
 const val SMALL_SQUARE = "s"
 const val LARGE_SQUARE = "q"
