@@ -37,25 +37,18 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="@dimen/spacing_10">
-
-            <LinearLayout
+            <WebView
+                android:id="@+id/webview_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingStart="@dimen/spacing_small"
-                android:paddingLeft="@dimen/spacing_small"
-                android:paddingEnd="@dimen/spacing_small"
-                android:paddingRight="@dimen/spacing_small">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/img_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
-
-            </LinearLayout>
+                tools:ignore="MissingConstraints"
+                android:layout_marginLeft="7dp"
+                android:visibility="gone"
+                android:layout_marginRight="7dp"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp" />
 
 
         </RelativeLayout>

@@ -11,13 +11,14 @@ import com.flicker.domain.api.SearchResponse
 import com.flicker.flickersearch.R
 import com.flicker.flickersearch.core.model.DataStatus
 import com.flicker.flickersearch.ui.detail.DetailActivity
-import com.flicker.flickersearch.utils.DEFAULT_QUERY
-import com.flicker.flickersearch.utils.hide
-import com.flicker.flickersearch.utils.hideKeyboard
-import com.flicker.flickersearch.utils.isConnectingToInternet
-import com.flicker.flickersearch.utils.show
+import com.flicker.flickersearch.utils.*
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.content_home.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity : AppCompatActivity() {
@@ -47,10 +48,19 @@ class HomeActivity : AppCompatActivity() {
             when (it?.status) {
                 DataStatus.SUCCESS -> {
                     showResult(it.data)
+                    GlobalScope.launch(Dispatchers.Main) {
+                        delay(1700)
+                        frame_loadingview.hide()
+                        homecontent.show()
+                    }
                 }
                 DataStatus.LOADING -> {
+                    frame_loadingview.show()
+                    homecontent.hide()
                 }
                 DataStatus.ERROR -> {
+                    frame_loadingview.hide()
+                    homecontent.show()
                     showError()
                 }
             }
@@ -117,7 +127,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    fun startDetailActivity(photoID: String?, title: String?) {
+    private fun startDetailActivity(photoID: String?, title: String?) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("photoID", photoID)
         intent.putExtra("title", title)

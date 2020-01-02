@@ -2,6 +2,8 @@ package com.flicker.flickersearch.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.view.View
@@ -76,9 +78,12 @@ fun Context.isConnectingToInternet(): Boolean {
     return false
 }
 
+fun Context.isIntentAvailable(intent: Intent): Boolean {
+    return packageManager.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).size > 0
+}
 
 const val DEFAULT_PAGE_SIZE = 30
-const val DEFAULT_QUERY = "nature"
+const val DEFAULT_QUERY = "city"
 const val API_KEY = "d0d311847224fd6ba2baadc18fad624d"
 
 const val FORMAT_JSON = "json"

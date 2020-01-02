@@ -7,4 +7,16 @@
     tools:context=".ui.detail.DetailActivity">
 
     <include layout="@layout/content_detail"/>
+
+    <FrameLayout
+        android:id="@+id/frame_loadingview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#8000"
+        android:visibility="gone">
+        <com.flicker.flickersearch.utils.LoadingView
+            android:layout_width="match_parent"
+            android:visibility="visible"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
 </FrameLayout>
