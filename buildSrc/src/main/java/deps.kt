@@ -324,6 +324,11 @@ object Deps {
 
     val PDFViewer = dep("com.github.barteksc" , "android-pdf-viewer" , "2.8.2")
 
+
+
+
+    val Glide = dep("com.github.bumptech.glide" , "glide" , "3.7.0")
+
 }
 
 private fun dep(group: String, name: String, version: String) = mapOf(

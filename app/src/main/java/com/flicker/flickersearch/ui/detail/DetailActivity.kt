@@ -102,8 +102,6 @@ class DetailActivity: AppCompatActivity() {
 
     private fun showResult(data: SearchDetailResponse?) {
         data?.photo?.let { mData ->
-            /*val thumbnailLink = getFlickrImageLink(mData.id, mData.secret, mData.server, mData.farm!!.toInt(), SMALL_360)
-            img_detail.loadImageFromLink(thumbnailLink)*/
             mData.urls?.listurl?.let { mUrl ->
                 if(mUrl.isNotEmpty()) {
                     webview_detail?.loadUrl(mUrl.first().imageurl)
